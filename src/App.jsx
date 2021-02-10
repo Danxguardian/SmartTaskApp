@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 
-const App = () => {
+
+function App() {
   return (
-    <div>
-      <h2>App component!</h2>
+    <div>    
+      HELLO WORLD!!!
     </div>
   );
 };
 
-export default App();
+export default App; 
