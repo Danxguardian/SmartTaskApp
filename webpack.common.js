@@ -1,6 +1,7 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + '/src/index.html',
   filename: 'index.html',
@@ -17,8 +18,7 @@ module.exports = {
     filename: 'main.bundle.js'
   },
 
-  // EVIROMENT MODE
-  mode: process.env.NODE_ENV || 'development',
+  // EVIROMENT MODE 
   target: 'web', //<= Activar hot reload
   // LOADERS
   module: {
@@ -46,8 +46,8 @@ module.exports = {
         test: /\.js$/,
         enforce: 'pre',
         use: ['source-map-loader'],
-      }, 
-   
+      },
+
     ],
   },
 
@@ -61,14 +61,12 @@ module.exports = {
     ]
   },
 
+  plugins: [
+    HTMLWebpackPluginConfig,
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Production',
+    }),
+  ],
 
-  plugins: [HTMLWebpackPluginConfig],
-  // DEV SERVER ENTRY POINT
-  devServer: {
-    contentBase: path.resolve(__dirname, "./src"),
-    port: 9999,
-    watchContentBase: true,
-    open: true
-
-  }
 };
