@@ -8,6 +8,6 @@ Una vez que tengas el proyecto, utiliza el comando para instalar los modulos nec
 
 ```
 
-_npm install_
+npm install
 
 ```
