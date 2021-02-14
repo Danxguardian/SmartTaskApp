@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 
 function App() {
   return (
-    <div>    
-      HELLO WORLD!!!
+    <div className="text-2xl base">    
+      HELLO WORLD!!!!
     </div>
   );
 };
