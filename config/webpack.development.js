@@ -1,14 +1,15 @@
-const path = require('path');
-console.log("configurando development")
+const path = require("path");
+console.log("config development");
 module.exports = {
-    /* output: {
+  /* output: {
         filename: '[name].js', //[2]
     }, */
-    mode: 'development',
-    devServer: {
-        contentBase: path.resolve(__dirname, "./src"),
-        port: 9999,
-        watchContentBase: true,
-        open: true,        
-    }
+  mode: "development",
+  devServer: {
+    static: { directory: path.join(__dirname, "public") },
+    port: 9999,
+    open: true,
+    hot: true,
+    
+  },
 };

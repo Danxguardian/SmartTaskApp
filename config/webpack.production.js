@@ -1,9 +1,9 @@
-('clean-webpack-plugin');
-console.log("configurando production")
+("clean-webpack-plugin");
+console.log("config production");
 module.exports = {
-   mode: 'production',
-   output: {
-      filename: 'main.bundle.js'
-   },
-   plugins: [],
+  mode: "production",
+  output: {
+    filename: "main.bundle.js",
+  },
+  plugins: [],
 };

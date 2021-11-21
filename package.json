@@ -1,9 +1,8 @@
 {
-  "name": "proyectbasereacttailwindcss",
+  "name": "proyectbasereactbootstrap",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@tailwindcss/postcss7-compat": "^2.0.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -21,11 +20,9 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "webpack serve --mode development --config webpack.config.js --host 0.0.0.0",    
-    "prebuild": "postcss src/assets/css/styles.css --output dist/css/styles.css",
+    "start": "webpack serve --mode development --config webpack.config.js ",
     "build": "webpack --mode production",
-    "postbuild": "cd /dist && gzip *.js && gzip *.css",
-    "watch": "postcss src/assets/css/styles.css --output dist/css/styles.css --watch"
+    "postBuild": "cd /dist && gzip *.js && gzip *.css"
   },
   "eslintConfig": {
     "extends": [
@@ -33,7 +30,7 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
+  "browserList": {
     "production": [
       ">0.2%",
       "not dead",
@@ -52,14 +49,14 @@
     "autoprefixer": "^9.8.6",
     "babel-loader": "8.2.2",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "html-webpack-plugin": "^5.5.0",
     "path": "^0.12.7",
     "postcss": "^8.2.4",
     "postcss-cli": "^8.3.1",
     "rimraf": "^3.0.2",
     "source-map-loader": "^1.1.3",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
-    "webpack": "^5.18.0",
-    "webpack-cli": "^4.5.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack": "^5.64.1",
+    "webpack-cli": "4.9.1",
+    "webpack-dev-server": "4.5.0"
   }
 }

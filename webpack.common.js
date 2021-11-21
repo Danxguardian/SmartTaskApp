@@ -1,26 +1,22 @@
-const path = require('path');
-const TerserPlugin = require("terser-webpack-plugin");
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: __dirname + '/src/index.html',
-  filename: 'index.html',
-  inject: 'body'
+  template: path.resolve(__dirname, "public", "index.html"),
+  filename: "index.html",
+  inject: "body",
 });
-
-
 
 module.exports = {
   // APP ENTRY POINT
-  entry: path.join(__dirname, 'src/index.jsx'),
-  watch: true,
+  entry: path.join(__dirname, "src/index.jsx"),
   // OUTPUT DIRECTORY
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'main.bundle.js'
+    path: path.join(__dirname, "dist"),
+    filename: "main.bundle.js",
   },
 
-  
   // LOADERS
   module: {
     rules: [
@@ -28,48 +24,32 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: "babel-loader",
+        },
+      },
+
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
+        exclude: /node_modules/,
+        use: ["file-loader?name=[name].[ext]"],
       },
       {
-        test: /\.(gif|svg|jpg|png|mp4|webp)$/,
-        loader: "file-loader",
-        
-        options: {
-          name: "[path]/[name].[ext]",
-          context: "src"
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
       },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          "style-loader",
-          { loader: "css-loader", options: { importLoaders: 1 } },
-          "postcss-loader",
-        ],
-      },
-      {
-        test: /\.js$/,
-        enforce: 'pre',
-        use: ['source-map-loader'],
-      }, 
-   
     ],
   },
 
   // PATH RESOLVE
   resolve: {
-    extensions: ['.js', '.json', '.jsx'],
-
-    modules: [
-      path.resolve(__dirname, 'src'),
-      'node_modules'
-    ]
+    extensions: [".js", ".json", ".jsx"],
+    modules: [path.resolve(__dirname, "src"), "node_modules"],
   },
 
-
   plugins: [
-    HTMLWebpackPluginConfig,   
+    HTMLWebpackPluginConfig,
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": JSON.stringify("development"),
+    }),
   ],
-  
 };
