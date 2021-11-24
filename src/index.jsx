@@ -1,10 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
-import "./assets/css/styles.css";
+import { Provider } from "react-redux";
+import { App } from "./App";
+import store from "./05_Store/index";
+import "./assets/css/allStyles.css";
 
 const target = document.getElementById("root");
-ReactDOM.render(<App />, target);
+
+ReactDOM.render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	target
+);
 if (module.hot) {
 	module.hot.accept();
 }
