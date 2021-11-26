@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CLoader } from "./01_Components/CLoader/index";
+import { CModal } from "./01_Components/CModal";
+
+import * as modalActions from "./05_Store/Actions/AModal";
+
 /* import logo192 from "../public/src/logo192.png";
 import logo512 from "../public/src/logo512.png"; */
 
-import { getInfoRequest } from "./05_Store/Actions/AInformation";
-import { showLoader } from "./05_Store/Actions/ALoader";
 /* implementar route guard */
 export const App = () => {
 	const dispatch = useDispatch();
-	/* dispatch(getInfoRequest({})); */
-	/* implementar action for dialogue errors */
-
 	const loading = useSelector((state) => state.loader);
+	const modal = useSelector((state) => state.modal);
 
 	useEffect(() => {
-		dispatch(showLoader());
+		/* dispatch(showLoader("Nice")); */
+		dispatch(modalActions.showModal(1));
 	}, []);
 
 	return (
@@ -27,6 +28,15 @@ export const App = () => {
 				</div>
 			</div>
 
+			{modal.status && (
+				<CModal
+					type={modal.type}
+					title={modal.title}
+					message={modal.message}
+					btnAccept={modal.accept}
+					btnCancel={modal.cancel}
+				/>
+			)}
 			{loading.status && <CLoader title={loading.title} />}
 			{/* implementar dialogue errors */}
 		</>
