@@ -9,7 +9,9 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.24.0",
     "clean-webpack-plugin": "^3.0.0",
+    "crypto-js": "^4.1.1",
     "css-loader": "^5.0.1",
+    "env-cmd": "^10.1.0",
     "latest-version": "^5.1.0",
     "postcss-loader": "^4.2.0",
     "react": "^17.0.1",
@@ -24,8 +26,8 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "webpack serve --mode development --config webpack.config.js ",
-    "build": "webpack --mode production",
+    "start": "env-cmd -e development webpack serve --mode development --config webpack.config.js  ",
+    "build": "env-cmd -e production webpack --mode production",
     "postBuild": "cd /dist && gzip *.js && gzip *.css"
   },
   "eslintConfig": {
