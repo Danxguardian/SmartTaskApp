@@ -7,12 +7,12 @@ const CTestPage = ({ RenderComponent }) => {
 
 	const dispatch = useDispatch();
 
-	const openModal = (values) => {
+	const openModal = () => {
 		console.log("openModal");
 		dispatch(modalActions.showModal(1, null, "Soy un Modal 😎😎"));
 	};
 
-	const openLoader = (values) => {
+	const openLoader = () => {
 		console.log("openLoader");
 		dispatch(loaderActions.showLoader());
 		setTimeout(function () {
@@ -21,7 +21,7 @@ const CTestPage = ({ RenderComponent }) => {
 	};
 
 	const summitData = (values) => {
-		const payload = {};
+		const payload = { values };
 		console.log("summitData");
 		/* dispatch(actionsIdentification.getIdentificationRequest(payload)); */
 	};
