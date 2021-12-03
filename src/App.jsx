@@ -5,6 +5,8 @@ import { CModal } from "./01_Components/CModal";
 import { encrypt } from "./06_Utils/encrypt";
 import { descrypt } from "./06_Utils/decrypt";
 import CONFIG from "./04_Constans/constans";
+import PTestPage from "./02_Pages/PTestPage/index";
+import CTestPage from "./03_Controllers/CTestPage";
 
 import * as modalActions from "./05_Store/Actions/AModal";
 
@@ -22,18 +24,15 @@ export const App = () => {
 	const modal = useSelector((state) => state.modal);
 	useEffect(() => {
 		/* dispatch(showLoader("Nice")); */
-		dispatch(
+		/* dispatch(
 			modalActions.showModal(1, null, descrypt(encrypt("hola mundo")))
-		);
+		); */
 	}, []);
 
 	return (
 		<>
 			<div className="container col">
-				<div className="row justify-content-md-center">
-					<div className="testBorder col-12 col-lg-2">SideBar </div>
-					<div className="testBorder col-12 col-lg-10">Content</div>
-				</div>
+				<CTestPage RenderComponent={PTestPage} />
 			</div>
 
 			{modal.status && (

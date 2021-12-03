@@ -43,7 +43,6 @@ export const CModal = ({ type, title, message, btnAccept, btnCancel }) => {
 							type="button"
 							className="btn btn-primary"
 							onClick={() => {
-								console.log("onclick");
 								dispatch(actionsModal.acceptModal());
 							}}
 						>
