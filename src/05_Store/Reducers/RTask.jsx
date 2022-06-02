@@ -65,7 +65,6 @@ const taskReducer = (state = INIT_STATE, action) => {
 		}
 
 		case Types.TASK_UPDATE: {
-			console.log("action.payload", action.payload);
 			if (action.payload.status == 2)
 				return {
 					taskList: [
@@ -85,7 +84,6 @@ const taskReducer = (state = INIT_STATE, action) => {
 		}
 
 		case Types.TASK_TO_CURRENT: {
-			console.log("action.payload", action.payload);
 			const task = action.payload;
 			task.status = 2;
 			return { ...state, taskCurrent: task };

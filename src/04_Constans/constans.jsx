@@ -34,8 +34,6 @@ const CONFIG = {
 
 const validateHost = () => {
 	const sessionEnv = sessionStorage.getItem("env");
-	console.log(sessionEnv);
-	console.log(`Work In: ${window.location.hostname} con ENV ${sessionEnv}`);
 
 	if (sessionEnv) {
 		return CONFIG[String(sessionEnv)];

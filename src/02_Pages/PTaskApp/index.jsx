@@ -28,7 +28,6 @@ const PTaskApp = ({
 	deleteTask,
 	startTask,
 	editTask,
-	filterTaskBy,
 }) => {
 	const orderTaskBy = () => {};
 
@@ -40,6 +39,8 @@ const PTaskApp = ({
 	const [task, setTask] = useState(null);
 	const { register, handleSubmit, setValue, reset, formState } = useForm();
 	const [filterOption, setFilterOption] = useState("");
+
+	const [taskList, setTaskList] = useState(taskAppData.taskList);
 
 	const onSubmit = (data) => {
 		setOpen(false);
@@ -55,13 +56,36 @@ const PTaskApp = ({
 		setOpen(true);
 	};
 
+	useEffect(() => {
+		setTaskList(taskAppData.taskList);
+		setFilterOption("");
+	}, [taskAppData]);
+
+	const filterTaskBy = (status) => {
+		console.log(status);
+		const result = Object.entries(taskAppData.taskList)
+			.filter(([key, value]) =>
+				status == 0 || status == 1
+					? value.status == status
+					: status == 2
+					? value.initialTime.minutes <= 30
+					: status == 3
+					? value.initialTime.minutes > 30 &&
+					  value.initialTime.minutes <= 59
+					: value.initialTime.minutes > 59
+			)
+			.map(([key, value]) => value);
+		console.log(result);
+		status == -1 ? setTaskList(taskAppData.taskList) : setTaskList(result);
+	};
+
 	return (
 		<>
 			<div className="row">
-				<div className="col-6">
+				<div className="col-lg-6 col-12">
 					<h3>{taskAppData.extras.title}</h3>
 				</div>
-				<div className="col-3">
+				<div className="col-lg-3 col-6">
 					<TextField
 						className="w-100"
 						select
@@ -80,14 +104,18 @@ const PTaskApp = ({
 						))}
 					</TextField>
 				</div>
-				<div className="col-3 d-flex justify-content-end">
-					<Button variant="contained" endIcon={<AddIcon />}>
+				<div className="col-lg-3 col-6 d-flex justify-content-end">
+					<Button
+						onClick={() => setOpen(true)}
+						variant="contained"
+						endIcon={<AddIcon />}
+					>
 						{taskAppData.extras.btnAdd}
 					</Button>
 				</div>
 				<div className="col-12">
 					<CTaskList
-						data={taskAppData.taskList}
+						data={taskList}
 						currentTask={taskAppData.currentTask}
 						deleteTask={deleteTask}
 						onUpdate={updateTask}
@@ -181,7 +209,6 @@ const PTaskApp = ({
 											}
 											value={customTime}
 											onChange={(newValue) => {
-												console.log("nV", newValue);
 												setCustomTime(newValue);
 											}}
 											renderInput={(params) => (

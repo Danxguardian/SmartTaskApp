@@ -33,7 +33,6 @@ const PTestPage = ({ summitData, openModal, openLoader }) => {
 						type="button"
 						className="btn btn-primary btn-lg"
 						onClick={() => {
-							console.log("Hacer Ping");
 							summitData();
 						}}
 					>

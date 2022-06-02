@@ -6,8 +6,8 @@ import * as taskActions from "../05_Store/Actions/ATask";
 
 const CTaskApp = ({ RenderComponent }) => {
 	const stateForWorks = useSelector((state) => state.task);
-
-	const [taskList, setTaskList] = useState(stateForWorks.taskList);
+	const taskList = stateForWorks.taskList;
+	/* const [taskList, setTaskList] = useState(stateForWorks.taskList); */
 	const dispatch = useDispatch();
 
 	const createTask = (data) => {
@@ -29,10 +29,7 @@ const CTaskApp = ({ RenderComponent }) => {
 	};
 
 	const editTask = (task, data) => {
-		console.log("createTask", { task: task, data: data });
 		let customTime = moment(data.customTimeSelector).format("mm,ss");
-		console.log("customTime", customTime);
-		console.log("nueva edicion", task);
 		task.title = data.title;
 		task.description = data.description;
 		task.initialTime =
@@ -53,36 +50,15 @@ const CTaskApp = ({ RenderComponent }) => {
 	};
 
 	const startTask = (task) => {
-		console.log("startTask");
 		dispatch(taskActions.taskStart(task));
 	};
 
 	const updateTask = (task) => {
-		console.log("updateTask", task);
 		dispatch(taskActions.taskUpdate(task));
 	};
 
 	const deleteTask = (item) => {
-		console.log("deleteTask", item);
 		dispatch(taskActions.taskDelete(item));
-	};
-
-	const filterTaskBy = (status) => {
-		console.log(stateForWorks.taskList);
-		const result = Object.entries(stateForWorks.taskList)
-			.filter(([key, value]) =>
-				status == 0 || status == 1
-					? value.status == status
-					: status == 2
-					? value.initialTime.minutes <= 30
-					: status == 3
-					? value.initialTime.minutes > 30 &&
-					  value.initialTime.minutes <= 59
-					: value.initialTime.minutes > 59
-			)
-			.map(([key, value]) => value);
-
-		setTaskList(status == -1 ? stateForWorks.taskList : result);
 	};
 
 	const taskAppData = {
@@ -134,7 +110,6 @@ const CTaskApp = ({ RenderComponent }) => {
 		updateTask: updateTask,
 		editTask: editTask,
 		deleteTask: deleteTask,
-		filterTaskBy: filterTaskBy,
 	};
 
 	return <RenderComponent {...propsToComponent} />;

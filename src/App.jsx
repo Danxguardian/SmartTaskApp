@@ -7,8 +7,6 @@ import CONFIG from "./04_Constans/constans";
 import CTaskApp from "./03_Controllers/CTaskApp";
 import PTaskApp from "./02_Pages/PTaskApp";
 
-console.log("env", process.env);
-console.log("config", CONFIG);
 
 export const App = () => {
 	const dispatch = useDispatch();

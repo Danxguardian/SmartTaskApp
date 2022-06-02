@@ -81,11 +81,11 @@ export const CListItemPrimaryCustom = ({
 
 	return (
 		<div className={`row ${className ? className : ""}`}>
-			<div className="col-6">{`${task.title}`}</div>
-			<div className="col-2 d-flex justify-content-end">
+			<div className="col-lg-6 col-12">{`${task.title}`}</div>
+			<div className="col-lg-2 col-4 d-flex justify-content-lg-end ">
 				{statusCodes[task.status]}
 			</div>
-			<div className="col-4 d-flex justify-content-end">
+			<div className="col-lg-4 col-8 d-flex justify-content-end">
 				{task.status == 2 ? (
 					<>
 						<button onClick={pauseTimer}>
