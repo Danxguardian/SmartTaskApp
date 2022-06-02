@@ -6,7 +6,6 @@ import * as actionsModal from "../../05_Store/Actions/AModal";
 import "./index.css";
 //type 1=info 2=accept
 export const CModal = ({ type, title, message, btnAccept, btnCancel }) => {
-	console.log(type);
 	const dispatch = useDispatch();
 	return (
 		<div

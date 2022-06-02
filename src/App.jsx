@@ -2,18 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CLoader } from "./01_Components/CLoader/index";
 import { CModal } from "./01_Components/CModal";
-import { encrypt } from "./06_Utils/encrypt";
-import { descrypt } from "./06_Utils/decrypt";
 import CONFIG from "./04_Constans/constans";
-import PTestPage from "./02_Pages/PTestPage/index";
-import CTestPage from "./03_Controllers/CTestPage";
 
-import * as modalActions from "./05_Store/Actions/AModal";
-
-/* import logo192 from "../public/src/logo192.png";
-import logo512 from "../public/src/logo512.png"; */
-
-/* implementar route guard */
+import CTaskApp from "./03_Controllers/CTaskApp";
+import PTaskApp from "./02_Pages/PTaskApp";
 
 console.log("env", process.env);
 console.log("config", CONFIG);
@@ -22,17 +14,11 @@ export const App = () => {
 	const dispatch = useDispatch();
 	const loading = useSelector((state) => state.loader);
 	const modal = useSelector((state) => state.modal);
-	useEffect(() => {
-		/* dispatch(showLoader("Nice")); */
-		/* dispatch(
-			modalActions.showModal(1, null, descrypt(encrypt("hola mundo")))
-		); */
-	}, []);
 
 	return (
 		<>
-			<div className="container col">
-				<CTestPage RenderComponent={PTestPage} />
+			<div className="container">
+				<CTaskApp RenderComponent={PTaskApp} />
 			</div>
 
 			{modal.status && (
