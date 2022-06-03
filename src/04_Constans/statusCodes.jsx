@@ -58,4 +58,6 @@ export const messages = {
 	titleInitialTime: "Tiempo inicial",
 	titleCurrentTime: "Tiempo restante",
 	titleTotalTime: "Tiempo total",
+	statusTitle: "Estatus",
+	requerido: "Se requiere de este campo",
 };

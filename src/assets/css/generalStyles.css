@@ -1,3 +1,58 @@
 body {
 	padding: 2em 0 2em 0em;
 }
+
+.container {
+	background: rgba(255, 255, 255, 0.3);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(15px);
+	-webkit-backdrop-filter: blur(15px);
+	border-radius: 2em;
+	padding: 1em 2em;
+}
+
+#root {
+	padding: 0 1em;
+}
+
+.currentTask {
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+	background: #acb6e5 !important;
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(15.5px);
+	-webkit-backdrop-filter: blur(15.5px);
+	border-radius: 10px;
+}
+
+form {
+	background: rgba(255, 255, 255, 0.9);
+	box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border-radius: 10px;
+	padding: 2em;
+}
+
+button {
+	background: transparent;
+	border: 1px white solid;
+	margin-left: 0.5em;
+}
+
+.taskTitle {
+	font-size: larger;
+	font-weight: bold;
+}
+
+.taskTime {
+	font-size: large;
+}
+
+.taskDescription {
+	font-size: large;
+}
+
+.taskStatus {
+	font-size: larger;
+}

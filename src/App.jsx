@@ -6,7 +6,7 @@ import CONFIG from "./04_Constans/constans";
 
 import CTaskApp from "./03_Controllers/CTaskApp";
 import PTaskApp from "./02_Pages/PTaskApp";
-
+import { GlobalStyles } from "@mui/material";
 
 export const App = () => {
 	const dispatch = useDispatch();

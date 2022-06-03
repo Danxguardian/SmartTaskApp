@@ -4,7 +4,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import "./index.css";
-import { IconButton, ListItemSecondaryAction } from "@mui/material";
+import { Divider, IconButton, ListItemSecondaryAction } from "@mui/material";
 
 import { CListItemPrimaryCustom } from "../CListItemPrimaryCustom";
 
@@ -20,40 +20,46 @@ export const CTaskList = ({
 		<List
 			sx={{
 				width: "100%",
-				bgcolor: "background.paper",
+				bgcolor: "transparent",
 				position: "relative",
 				overflow: "auto",
-				height: 1000,
-				maxHeight: 1000,
+				height: window.innerHeight - 150,
+				maxHeight: 930,
 			}}
 		>
-			<ListSubheader>
-				<ListItemText>
-					{currentTask && (
+			{currentTask && (
+				<ListSubheader className="currentTask">
+					<ListItemText>
 						<CListItemPrimaryCustom
-							className={"testBorder"}
 							task={currentTask}
 							onDelete={() => deleteTask(currentTask)}
 							onUpdate={(task) => onUpdate(task)}
 							onStart={(task) => onStart(task)}
 						/>
-					)}
-				</ListItemText>
-			</ListSubheader>
+					</ListItemText>
+				</ListSubheader>
+			)}
+			;
 			{data.map(
 				(task) =>
 					task.status != 2 && (
-						<ListItem key={`task-${task.id}-${task.title}`}>
-							<ListItemText>
-								<CListItemPrimaryCustom
-									task={task}
-									onDelete={() => deleteTask(task)}
-									/* onUpdate={onUpdate} */
-									onStart={(task) => onStart(task)}
-									onEdit={onEdit}
-								/>
-							</ListItemText>
-						</ListItem>
+						<>
+							<ListItem
+								className="mb-2 mt-2"
+								key={`task-${task.id}-${task.title}`}
+							>
+								<ListItemText>
+									<CListItemPrimaryCustom
+										task={task}
+										onDelete={() => deleteTask(task)}
+										/* onUpdate={onUpdate} */
+										onStart={(task) => onStart(task)}
+										onEdit={onEdit}
+									/>
+								</ListItemText>
+							</ListItem>
+							<Divider light />
+						</>
 					)
 			)}
 		</List>

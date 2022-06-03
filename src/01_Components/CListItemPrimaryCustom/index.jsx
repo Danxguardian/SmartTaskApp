@@ -81,11 +81,11 @@ export const CListItemPrimaryCustom = ({
 
 	return (
 		<div className={`row ${className ? className : ""}`}>
-			<div className="col-lg-6 col-12">{`${task.title}`}</div>
-			<div className="col-lg-2 col-4 d-flex justify-content-lg-end ">
-				{statusCodes[task.status]}
+			<div className="col-lg-6 col-12 taskTitle">{`${task.title}`}</div>
+			<div className="col-lg-3 col-4 d-flex justify-content-lg-start taskStatus">
+				{`${messages["statusTitle"]}:  ${statusCodes[task.status]}`}
 			</div>
-			<div className="col-lg-4 col-8 d-flex justify-content-end">
+			<div className="col-lg-3 col-8 d-flex justify-content-end">
 				{task.status == 2 ? (
 					<>
 						<button onClick={pauseTimer}>
@@ -123,7 +123,9 @@ export const CListItemPrimaryCustom = ({
 					</button>
 				) : null}
 			</div>
-			<div className="col-4">{`${messages["titleInitialTime"]}: ${
+			<div className="col-4 taskTime">{`${
+				messages["titleInitialTime"]
+			}: ${
 				task.initialTime
 					? `${task.initialTime.minutes
 							.toString()
@@ -132,7 +134,9 @@ export const CListItemPrimaryCustom = ({
 							.padStart(2, "0")}`
 					: "----"
 			}`}</div>
-			<div className="col-4">{`${messages["titleCurrentTime"]}: ${
+			<div className="col-4 taskTime">{`${
+				messages["titleCurrentTime"]
+			}: ${
 				task.status != 2
 					? task.currentTime
 						? `${task.currentTime.minutes
@@ -145,7 +149,7 @@ export const CListItemPrimaryCustom = ({
 							.toString()
 							.padStart(2, "0")}`
 			}`}</div>
-			<div className="col-4">{`${messages["titleTotalTime"]}: ${
+			<div className="col-4 taskTime">{`${messages["titleTotalTime"]}: ${
 				task.totalTime
 					? `${task.totalTime.minutes
 							.toString()
@@ -154,7 +158,7 @@ export const CListItemPrimaryCustom = ({
 							.padStart(2, "0")}`
 					: "----"
 			}`}</div>
-			<div className="col-12">{task.description}</div>
+			<div className="col-12 taskDescription">{task.description}</div>
 		</div>
 	);
 };

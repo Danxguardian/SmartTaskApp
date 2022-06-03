@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { CTaskList } from "../../01_Components/CTaskList";
 import AddIcon from "@mui/icons-material/Add";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 import {
 	Autocomplete,
 	Button,
@@ -20,6 +22,7 @@ import { TimePicker } from "@mui/lab";
 
 import { useForm } from "react-hook-form";
 import { filterOptions } from "../../04_Constans/statusCodes";
+import { schema } from "./validations";
 
 const PTaskApp = ({
 	taskAppData,
@@ -33,11 +36,13 @@ const PTaskApp = ({
 
 	const [optionTime, setOptionTime] = useState("");
 	const [open, setOpen] = useState(false);
-	const [customTime, setCustomTime] = useState(
-		new Date(2007, 1, 1, 1, 59, 59)
-	);
+	const [customTime, setCustomTime] = useState(null);
 	const [task, setTask] = useState(null);
-	const { register, handleSubmit, setValue, reset, formState } = useForm();
+	const { register, handleSubmit, setValue, getValues, reset, formState } =
+		useForm({
+			mode: "all",
+			resolver: yupResolver(schema),
+		});
 	const [filterOption, setFilterOption] = useState("");
 
 	const [taskList, setTaskList] = useState(taskAppData.taskList);
@@ -61,6 +66,10 @@ const PTaskApp = ({
 		setFilterOption("");
 	}, [taskAppData]);
 
+	const handleKeypress = (e) => {
+		e.preventDefault();
+		return false;
+	};
 	const filterTaskBy = (status) => {
 		console.log(status);
 		const result = Object.entries(taskAppData.taskList)
@@ -82,7 +91,7 @@ const PTaskApp = ({
 	return (
 		<>
 			<div className="row">
-				<div className="col-lg-6 col-12">
+				<div className="col-lg-6 col-12 mb-2">
 					<h3>{taskAppData.extras.title}</h3>
 				</div>
 				<div className="col-lg-3 col-6">
@@ -113,7 +122,7 @@ const PTaskApp = ({
 						{taskAppData.extras.btnAdd}
 					</Button>
 				</div>
-				<div className="col-12">
+				<div className="col-12 mt-4">
 					<CTaskList
 						data={taskList}
 						currentTask={taskAppData.currentTask}
@@ -209,10 +218,19 @@ const PTaskApp = ({
 											}
 											value={customTime}
 											onChange={(newValue) => {
-												setCustomTime(newValue);
+												if (
+													newValue !=
+														"Invalid Date" ||
+													newValue.length != 0
+												) {
+													setCustomTime(newValue);
+												}
 											}}
 											renderInput={(params) => (
 												<TextField
+													onKeyPress={() => {
+														handleKeypress(event);
+													}}
 													className="w-100"
 													variant="standard"
 													name={
@@ -235,7 +253,12 @@ const PTaskApp = ({
 						</div>
 					</DialogContent>
 					<DialogActions>
-						<Button type="submit" variant="contained">
+						<Button
+							type="submit"
+							onClick={() => console.log(formState.errors)}
+							disabled={!formState.isValid}
+							variant="contained"
+						>
 							{taskAppData.form.extra.createButton}
 						</Button>
 					</DialogActions>

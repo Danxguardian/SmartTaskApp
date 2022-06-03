@@ -1,5 +1,12 @@
 /* THEME STYLES ONLY */
 
-.testBorder {
-    border: 2px dotted rgb(225, 0, 255);
+body {
+	background: -webkit-gradient(
+			linear,
+			left top,
+			left bottom,
+			from(#74ebd5),
+			to(#acb6e5)
+		)
+		fixed;
 }
