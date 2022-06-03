@@ -39,7 +39,7 @@ export const CTaskList = ({
 					</ListItemText>
 				</ListSubheader>
 			)}
-			;
+
 			{data.map(
 				(task) =>
 					task.status != 2 && (
