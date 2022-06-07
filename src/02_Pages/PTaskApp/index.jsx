@@ -23,6 +23,7 @@ import { TimePicker } from "@mui/lab";
 import { useForm } from "react-hook-form";
 import { filterOptions } from "../../04_Constans/statusCodes";
 import { schema } from "./validations";
+import { CGraph } from "../../01_Components/CGraph";
 
 const PTaskApp = ({
 	taskAppData,
@@ -36,6 +37,7 @@ const PTaskApp = ({
 
 	const [optionTime, setOptionTime] = useState("");
 	const [open, setOpen] = useState(false);
+	const [openGraph, setOpenGraph] = useState(false);
 	const [customTime, setCustomTime] = useState(null);
 	const [task, setTask] = useState(null);
 	const { register, handleSubmit, setValue, getValues, reset, formState } =
@@ -91,10 +93,10 @@ const PTaskApp = ({
 	return (
 		<>
 			<div className="row">
-				<div className="col-lg-6 col-12 mb-2">
+				<div className="col-lg-4 col-12 mb-2">
 					<h3>{taskAppData.extras.title}</h3>
 				</div>
-				<div className="col-lg-3 col-6">
+				<div className="col-lg-4 col-12">
 					<TextField
 						className="w-100"
 						select
@@ -113,7 +115,15 @@ const PTaskApp = ({
 						))}
 					</TextField>
 				</div>
-				<div className="col-lg-3 col-6 d-flex justify-content-end">
+				<div className="col-lg-2 col-6 d-flex justify-content-end">
+					<Button
+						onClick={() => setOpenGraph(true)}
+						variant="contained"
+					>
+						{taskAppData.extras.seeGraph}
+					</Button>
+				</div>
+				<div className="col-lg-2 col-6 d-flex justify-content-end">
 					<Button
 						onClick={() => setOpen(true)}
 						variant="contained"
@@ -133,6 +143,17 @@ const PTaskApp = ({
 					/>
 				</div>
 			</div>
+
+			<Dialog
+				className="px-6 py-6"
+				fullScreen
+				open={openGraph}
+				onClose={() => {
+					setOpenGraph(false);
+				}}
+			>
+				<CGraph data={taskAppData.taskList} />
+			</Dialog>
 
 			<Dialog
 				open={open}

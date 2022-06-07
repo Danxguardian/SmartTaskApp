@@ -27,7 +27,11 @@ Array.from({ length: 50 }, (x, i) => {
 				: { minutes: 0, seconds: 0 },
 		title: "Dummy Task " + (i + 1),
 		status: status,
-		dateCreated: "",
+		dateCreated: new Date(
+			2022,
+			Math.floor(Math.random() * (new Date().getMonth() + 2 - 1)),
+			Math.floor(Math.random() * (new Date().getDate() - 1))
+		),
 		description:
 			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat tincidunt felis in facilisis. Aenean cursus cursus massa nec eleifend. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam pharetra pharetra eros eget vulputate. Duis ornare, lorem non sollicitudin semper",
 	});

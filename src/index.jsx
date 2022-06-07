@@ -1,16 +1,18 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { render } from "react-dom";
+
 import { Provider } from "react-redux";
 import { App } from "./App";
 import store from "./05_Store/index";
 import "./assets/css/allStyles.css";
 
-const target = ReactDOM.createRoot(document.getElementById("root"));
+const target = document.getElementById("root");
 
-target.render(
+render(
 	<Provider store={store}>
 		<App />
-	</Provider>
+	</Provider>,
+	target
 );
 if (module.hot) {
 	module.hot.accept();

@@ -56,3 +56,13 @@ button {
 .taskStatus {
 	font-size: larger;
 }
+
+.px-6 {
+	padding-left: 6em;
+	padding-right: 6em;
+}
+
+.px-6 {
+	padding-top: 6em;
+	padding-bottom: 6em;
+}

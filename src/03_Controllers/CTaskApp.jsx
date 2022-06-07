@@ -100,6 +100,7 @@ const CTaskApp = ({ RenderComponent }) => {
 			title: "Smart Task App",
 			btnAdd: "Agregar tarea",
 			filterPlaceholder: "Filtrar por",
+			seeGraph: "Ver grafica",
 		},
 	};
 
