@@ -22,7 +22,7 @@ const CTaskApp = ({ RenderComponent }) => {
 						  }
 						: data.timeSelector,
 				title: data.title,
-				dateCreated: "",
+				dateCreated: new Date(),
 				description: data.description,
 			})
 		);
@@ -101,6 +101,7 @@ const CTaskApp = ({ RenderComponent }) => {
 			btnAdd: "Agregar tarea",
 			filterPlaceholder: "Filtrar por",
 			seeGraph: "Ver grafica",
+			closeGraph: "Cerrar grafica",
 		},
 	};
 

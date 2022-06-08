@@ -17,8 +17,6 @@ export const CGraph = ({ data }) => {
 		setZoomDomain({ domain });
 	};
 
-	console.log("data", data);
-
 	const numComplete = data.filter(function (el) {
 		return el.status == 0;
 	});
@@ -28,8 +26,16 @@ export const CGraph = ({ data }) => {
 
 	return (
 		<VictoryChart
-			width={600}
-			height={470}
+			width={
+				window.screen.width > 600
+					? window.screen.width - 100
+					: window.screen.width - 5
+			}
+			height={
+				window.screen.height > 600
+					? window.screen.height - 100
+					: window.screen.height - 5
+			}
 			scale={{ x: "time" }}
 			containerComponent={
 				<VictoryZoomContainer

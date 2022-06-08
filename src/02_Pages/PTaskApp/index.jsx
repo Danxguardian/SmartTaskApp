@@ -145,14 +145,25 @@ const PTaskApp = ({
 			</div>
 
 			<Dialog
-				className="px-6 py-6"
+				className="px-lg-4 px-4 py-4"
 				fullScreen
 				open={openGraph}
 				onClose={() => {
 					setOpenGraph(false);
 				}}
 			>
-				<CGraph data={taskAppData.taskList} />
+				<DialogContent>
+					<CGraph data={taskAppData.taskList} />
+				</DialogContent>
+				<DialogActions>
+					<Button
+						type="button"
+						onClick={() => setOpenGraph(false)}
+						variant="contained"
+					>
+						{taskAppData.extras.closeGraph}
+					</Button>
+				</DialogActions>
 			</Dialog>
 
 			<Dialog
@@ -276,7 +287,6 @@ const PTaskApp = ({
 					<DialogActions>
 						<Button
 							type="submit"
-							onClick={() => console.log(formState.errors)}
 							disabled={!formState.isValid}
 							variant="contained"
 						>
